@@ -1,15 +1,18 @@
 def nyc_pigeon_organizer(data)
-  pigeon_list = {}
-  arr = []
-  data.each do |k1, v1|
-    v1.each do |k2,v2|
-    arr << v2
-    end
-  end
-  names_arr = arr.flatten.uniq
+  new_pigeons = {}
 
-  names_arr.each do |name|
-    pigeon_list[name] = {color: [], gender: [], lives: []}
-  end
-  pigeon_list
+  data.each do |stats, value|
+    value.each do |key, names|
+      names.each do |name|
+        if new_pigeons[name] == nil
+            new_pigeons[name] = {}
+        end
+          if new_pigeons[name][stats] == nil
+            new_pigeons[name][stats] = []
+          end
+          new_pigeons[name][stats].push(key.to_s)
+        end
+      end
+    end
+  new_pigeons
 end
